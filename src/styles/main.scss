@@ -1,3 +1,7 @@
+iframe{
+    width: 100%;
+}
+
 .jj-sidebar {
     width: 320px;
     height: 100%;
@@ -20,6 +24,7 @@
 
         &-burger,
         &-selection {
+            cursor: pointer;
             padding: 12px;
             width: 2.5rem;
 
@@ -85,7 +90,7 @@
  
 }
 
-
+/* 
 :root {
     --primary-color: rgb(62, 100, 255);
     --complete-color: #27aa80;
@@ -270,4 +275,4 @@ select {
 
 .close-btn:hover {
     background-color: #DCDCDC;
-}
+} */

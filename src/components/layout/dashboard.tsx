@@ -1,56 +1,63 @@
-// @ts-ignore
-import React from 'react'
+import React, { useState } from 'react'
 import IFrame from "../preview/Iframe"
 import BuilderBlock from "../elements/BuilderBlock"
 
-import Selection from "../layout/selection"
-import {GrabberIcon} from '@primer/octicons-react'
-
+import Selection from "../dashboardItems/selection"
+import Editor from "../dashboardItems/editor"
+import { GrabberIcon } from '@primer/octicons-react'
+import Global from "../dashboardItems/global"
 
 
 export default function Dashboard() {
-    return (
-  
-        <div className="w-full h-screen flex ">
-            <div id="sidebar" className="jj-sidebar">
-                <div className="jj-sidebar-nav text-white">
-                    <div className="jj-sidebar-nav-burger"><svg viewBox="0 0 20 20"><title>Menu</title> <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path></svg>     </div>
-                    <div className="jj-sidebar-nav-logo"> <h1>Page Builder</h1>  </div>
-                    <div className="jj-sidebar-nav-selection"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                        viewBox="0 0 360.49 360.49" enableBackground="new 0 0 360.49 360.49;" >
 
-                        <path d="M96.653,0H13.061C7.29,0,2.612,4.678,2.612,10.449v83.592c0,5.771,4.678,10.449,10.449,10.449h83.592
-				c5.771,0,10.449-4.678,10.449-10.449V10.449C107.102,4.678,102.424,0,96.653,0z"/>
-                        <path d="M222.041,0h-83.592C132.678,0,128,4.678,128,10.449v83.592c0,5.771,4.678,10.449,10.449,10.449h83.592
-				c5.771,0,10.449-4.678,10.449-10.449V10.449C232.49,4.678,227.812,0,222.041,0z"/>
-                        <path d="M96.653,125.388H13.061c-5.771,0-10.449,4.678-10.449,10.449v83.592c0,5.771,4.678,10.449,10.449,10.449h83.592
-				c5.771,0,10.449-4.678,10.449-10.449v-83.592C107.102,130.066,102.424,125.388,96.653,125.388z"/>
-                        <path d="M222.041,125.388h-83.592c-5.771,0-10.449,4.678-10.449,10.449v83.592c0,5.771,4.678,10.449,10.449,10.449h83.592
-				c5.771,0,10.449-4.678,10.449-10.449v-83.592C232.49,130.066,227.812,125.388,222.041,125.388z"/>
-                        <path d="M347.429,0h-83.592c-5.771,0-10.449,4.678-10.449,10.449v83.592c0,5.771,4.678,10.449,10.449,10.449h83.592
-				c5.771,0,10.449-4.678,10.449-10.449V10.449C357.878,4.678,353.199,0,347.429,0z"/>
-                        <path d="M347.429,125.388h-83.592c-5.771,0-10.449,4.678-10.449,10.449v83.592c0,5.771,4.678,10.449,10.449,10.449h83.592
-				c5.771,0,10.449-4.678,10.449-10.449v-83.592C357.878,130.066,353.199,125.388,347.429,125.388z"/>
-                        <path d="M96.653,256H13.061c-5.771,0-10.449,4.678-10.449,10.449v83.592c0,5.771,4.678,10.449,10.449,10.449h83.592
-				c5.771,0,10.449-4.678,10.449-10.449v-83.592C107.102,260.678,102.424,256,96.653,256z"/>
-                        <path d="M222.041,256h-83.592c-5.771,0-10.449,4.678-10.449,10.449v83.592c0,5.771,4.678,10.449,10.449,10.449h83.592
-				c5.771,0,10.449-4.678,10.449-10.449v-83.592C232.49,260.678,227.812,256,222.041,256z"/>
-                        <path d="M347.429,256h-83.592c-5.771,0-10.449,4.678-10.449,10.449v83.592c0,5.771,4.678,10.449,10.449,10.449h83.592
-				c5.771,0,10.449-4.678,10.449-10.449v-83.592C357.878,260.678,353.199,256,347.429,256z"/>
+      enum Dashboard {
+            Selection,
+            Editor,
+            Global
+      }
 
-                    </svg>  </div>
+      function setActiveSidebar(type) {
+            console.log(type);
+            switch (type) {
+                  case Dashboard[Dashboard.Selection]:
+                        setCurrentSidebar(Selection)
+                        break;
+                  case Dashboard[Dashboard.Editor]:
+                        setCurrentSidebar(Editor)
+                        break;
+                  case Dashboard[Dashboard.Global]:
+                        setCurrentSidebar(Global)
+                        break;
+            }
+      }
+
+      const [currentSidebar, setCurrentSidebar] = useState(Selection)
+      const displayedSidebar = currentSidebar
+
+      return (
+
+            <div className="w-full h-screen flex ">
+                  <div id="sidebar" className="jj-sidebar">
+                        <div className="jj-sidebar-nav text-white">
+                              <div className="jj-sidebar-nav-burger"
+                                    onClick={() => setActiveSidebar(Dashboard[Dashboard.Global])}
+                              ><svg viewBox="0 0 20 20"><title>Menu</title> <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path></svg>     </div>
+                              <div className="jj-sidebar-nav-logo"> <h1>Page Builder</h1>  </div>
+                              <div className="jj-sidebar-nav-selection"
+                                    onClick={() => setActiveSidebar(Dashboard[Dashboard.Selection])}
+                              > <GrabberIcon /></div>
 
 
-                </div>
-                <Selection />
+                        </div>
+                        {displayedSidebar}
 
+                  </div>
+                  <div className="flex-1">
+                        <IFrame>
+                              {/* <BuilderBlock setEditor={setActiveSidebar(Dashboard[Dashboard.Editor])} /> */}
+                        </IFrame>
+                  </div>
             </div>
-            <div className="flex-1">
-                <IFrame>
-                    <BuilderBlock />
-                </IFrame>
-            </div>
-        </div>
-   
-    )
+
+      )
 }

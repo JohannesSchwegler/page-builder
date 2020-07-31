@@ -1,7 +1,7 @@
 import React from 'react'
 import BuilderElement from "./BuilderElement"
 
-export default function BuilderBlock() {
+export default function BuilderBlock({ setEditor }) {
     enum Elements {
         Image,
         Heading,
@@ -22,8 +22,14 @@ export default function BuilderBlock() {
                 text:"This is a normal heading.",
                 class: FontSize[FontSize["text-3xl"]]
             }
-
-
+        },
+        {
+            id: 2,
+            type: Elements[Elements.Heading],
+            options:{
+                text:"Another heading.",
+                class: FontSize[FontSize["text-3xl"]]
+            }
         }
     ]
 
@@ -32,7 +38,7 @@ export default function BuilderBlock() {
             {state.map(item => {
                 console.log(item);
                 return (
-                   <BuilderElement type={item.type} text={item.options.text} classes={item.options.class}/>
+                   <BuilderElement type={item.type} text={item.options.text} classes={item.options.class}  setEditor={setEditor} />
                 )
             })}
         </div>

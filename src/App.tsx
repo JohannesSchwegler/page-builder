@@ -11,8 +11,8 @@ function App() {
   return (
 
         <DndProvider backend={HTML5Backend}>
-      {/* <Dashboard /> */}
-      <Homepage />
+      <Dashboard />
+    {/*   <Homepage /> */}
     </DndProvider>
   
   );

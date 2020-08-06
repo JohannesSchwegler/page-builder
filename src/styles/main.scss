@@ -1,94 +1,164 @@
-iframe{
-    width: 100%;
+body {
+    background-color: #f3f3f3;
 }
 
-.jj-sidebar {
-    width: 320px;
-    height: 100%;
-    background-color: #e6e9ec;
+:root{
+    --primary-color: #0c44d3;
+}
+#preview {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
 
-    &-nav {
-        height: 40px;
 
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+.jj-control-field{
+    width: 100%;
+
+}
+.jj-control-wrapper{
+    width: 100%;
+
+    textarea{
         width: 100%;
-        background-color: #d30c5c;
+        border: 1px solid;
+        border-color: #d5dadf;
+        resize: vertical;
+        padding: 5px;
+    }
+}
+.builder-element {
+    position: relative;
+    margin:0 10px;
 
-        h1 {
-            color: #fff;
-            font-size: 18px;
-            line-height: 1;
+    &:hover {
+        box-shadow: inset 0 0 0 3px #71d7f7;
+        .builder-element-overlay {
+            opacity: 1;
         }
+    }
 
-        &-burger,
-        &-selection {
-            cursor: pointer;
-            padding: 12px;
-            width: 2.5rem;
+    &-overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
 
-            svg {
-                fill: #fff;
+        height: 100%;
+        letter-spacing: 0;
+        z-index: 9998;
+        pointer-events: none;
+        opacity: 0;
+        transition: 0.2s all;
+        cursor: pointer;
+
+        ul {
+            li {
+                display: inline-flex;
+                padding: 5px;
+                color: #fff;
+                background-color: #10bcf2;
             }
         }
     }
 }
-
-.jj-accordion {
-    padding: 0 20px;
-    text-align: left;
-    &-item {
-        &-title {
-            font-size: 12px;
-            padding: 20px 0;
-            position: relative;
-            text-transform: uppercase;
-        }
-    }
-}
-.jj-accordion-grid {
-    margin: 0 -10px;
+.flexbox {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between;
+
+    width: 100%;
+    max-width: 768px;
+    height: 100vh;
+
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 15px;
 }
 
-.jj-element-wrapper {
-    padding: 0 10px;
-    width: 50%;
+.flexbox .board {
+    display: flex;
+    flex-direction: column;
 
- 
+    width: 300%;
+
+    background-color: #313131;
+    padding: 15px;
 }
-.jj-element-icon {
-    padding-top: 15px;
+
+.flexbox .board .card {
+    padding: 15px 25px;
+    background-color: #f3f3f3;
 }
-.jj-element-body {
-    cursor: all-scroll;
-    border-radius: 3px;
-    background-color: #fff;
-    text-align: center;
 
-    &:hover{
-        box-shadow: 0 2px 6px rgba(0,0,0,.2);
+.jj-panel {
+    &-navigation {
+        margin-bottom: 10px;
+        width: 100%;
+        display: flex;
+        text-align: center;
 
-        .jj-element-title {
-       
-            color: #d30c5c;
+        li {
+            padding: 15px 0 8px;
+            flex: 1;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            svg {
+                margin-bottom: 5px;
+            }
         }
-        .jj-element-icon{
-           svg{
-            fill:#d30c5c;
-           }
+    }
+
+    &-heading {
+        background-color: #fff;
+        height: 40px;
+        padding: 0 20px;
+        width: 100%;
+        border-bottom: 1px solid #e6e9ec;
+    }
+
+    &-control {
+        background-color: #fff;
+        position: relative;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+
+        select {
+            appearance: none;
+
+            font-size: 12px;
+            font-family: inherit;
+            font-weight: inherit;
+            font-style: inherit;
+            text-transform: inherit;
+            letter-spacing: inherit;
+            line-height: inherit;
+
+            padding-left: 5px;
+            padding-right: 20px;
+            cursor: pointer;
+
+            border-radius: 3px;
+            font-size: 12px;
+
+            background: none;
+            box-shadow: none;
+            color: #6d7882;
+            border: 1px solid;
+            outline: none;
+            height: 27px;
         }
     }
 }
 
-.jj-element-title {
-    font-size: 11px;
-    padding: 15px 0 20px;
-
- 
+iframe {
+    width: 100%;
 }
+
+
+
 
 /* 
 :root {

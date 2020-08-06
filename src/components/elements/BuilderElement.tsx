@@ -1,19 +1,45 @@
 import React from 'react'
-import styles from "../../styles/builder.module.scss"
+import s from "./BuilderElement.scss"
 
-export default function BuilderElement({type, text, classes, setEditor}) {
+import Widget, { Categories, Widgets } from "../includes/base/widget"
+import Textarea from "../includes/controls/Textarea"
 
-      console.log(styles);
+
+interface BEProps {
+    type: string;
+    setEditor: Function
+}
+
+export default function BuilderElement({ type, setEditor }: BEProps) {
+
+
+
+
+
+    const newTitle = new Textarea()
+    newTitle.setContent("This is a test")
+
+    const Heading = new Widget(Widgets.Heading, Categories.Base, [newTitle])
+
+
+
+
+
     return (
-        <div className={styles["builder-element"]}
-        onClick={()=>{
-            
-            setEditor()
-        }}
-        >
-              
-         { type === "Heading" ? <h1 className={`${classes}`}>{text}</h1> : "N"}     
-            
+        <div className={`builder-element ${s["builder-element"]}`}
+            onClick={() => {
+                setEditor(Heading)
+            }}>
+
+            {type === Widgets.Heading ? <h1 className={` `}>"f"</h1> : "N"}
+
+            <div className="builder-element-overlay">
+                <ul>
+                    <li>
+                        Edit
+                    </li>
+                </ul>
+            </div>
         </div>
     )
 }

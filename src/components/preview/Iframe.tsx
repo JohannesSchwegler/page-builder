@@ -1,22 +1,19 @@
-import React from 'react'
-import Frame from 'react-frame-component';
+import React, { ReactNode } from 'react'
 
-export default function Iframe({children}) {
+
+interface IframeProps {
+    children: ReactNode
+
+}
+export default function Iframe({ children }: IframeProps) {
+
     return (
-        <Frame
-     
- 
-        head={<>
+        <div id="preview">
 
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css" rel="stylesheet"></link>
-           
-        </>}
-    >
-       <h1>Iframe</h1>
+            {children}
 
-       {children}
-     
-    </Frame>
+
+        </div>
     )
 }
 

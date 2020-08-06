@@ -1,44 +1,24 @@
 import React from 'react'
 import BuilderElement from "./BuilderElement"
+import { useRecoilState } from "recoil"
+import { htmlTreeState as htmlAtom } from "../../atoms/Atoms"
 
-export default function BuilderBlock({ setEditor }) {
-    enum Elements {
-        Image,
-        Heading,
-        Row
+interface BBProps {
+    setEditor: Function;
+   
+}
 
-    }
+export default function BuilderBlock({ setEditor }: BBProps) {
 
-    enum FontSize {
-        "text-xl",
-        "text-2xl",
-        "text-3xl",
-    }
-    const state = [
-        {
-            id: 1,
-            type: Elements[Elements.Heading],
-            options:{
-                text:"This is a normal heading.",
-                class: FontSize[FontSize["text-3xl"]]
-            }
-        },
-        {
-            id: 2,
-            type: Elements[Elements.Heading],
-            options:{
-                text:"Another heading.",
-                class: FontSize[FontSize["text-3xl"]]
-            }
-        }
-    ]
+    const [tree] = useRecoilState(htmlAtom)
+    console.log(tree)
 
     return (
         <div className="builder-block">
-            {state.map(item => {
-                console.log(item);
+            {tree.map(item => {
+                console.log(item.type);
                 return (
-                   <BuilderElement type={item.type} text={item.options.text} classes={item.options.class}  setEditor={setEditor} />
+                    <BuilderElement type={item.type} setEditor={setEditor} />
                 )
             })}
         </div>
